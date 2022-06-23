@@ -27,6 +27,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.core.content.ContextCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.vlsantillan.imagetoresult.util.ImageUtils
 import java.util.concurrent.Executor
@@ -38,7 +39,8 @@ import java.util.concurrent.Executor
  */
 @Composable
 fun CameraScreen(
-    cameraViewModel: CameraViewModel = viewModel()
+    cameraViewModel: CameraViewModel = hiltViewModel(),
+    onCaptureClick: () -> Unit
 ) {
     ConstraintLayout(
         Modifier
@@ -74,6 +76,7 @@ fun CameraScreen(
                                     it
                                 )
                             )
+                            onCaptureClick()
                         }
                     }
 
