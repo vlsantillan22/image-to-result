@@ -62,6 +62,10 @@ object Libs {
             "com.google.android.gms:play-services-mlkit-text-recognition:18.0.0"
     }
 
+    object ExpressionEvaluator {
+        const val evaluator = "net.objecthunter:exp4j:0.4.8"
+    }
+
     object Java {
         const val javaxInject = "javax.inject:javax.inject:1"
         const val javaxJsr = "javax.annotation:jsr250-api:1.0"

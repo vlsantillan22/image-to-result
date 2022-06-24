@@ -72,6 +72,7 @@ dependencies {
     implementation Libs.Accompanist.permission
 
     implementation Libs.MLKit.textRecognition
+    implementation Libs.ExpressionEvaluator.evaluator
 
     implementation Libs.Hilt.hiltAndroid
     implementation Libs.Hilt.hiltNavigation
