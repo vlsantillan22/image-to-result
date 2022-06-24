@@ -67,6 +67,10 @@ object Libs {
         const val javaxJsr = "javax.annotation:jsr250-api:1.0"
     }
 
+    object Accompanist {
+        const val permission = "com.google.accompanist:accompanist-permissions:0.24.12-rc"
+    }
+
     object Test {
         const val junit = "junit:junit:4.13.2"
 

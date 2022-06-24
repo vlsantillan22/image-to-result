@@ -1,5 +1,6 @@
 package com.vlsantillan.domain.usecase
 
+import com.vlsantillan.domain.model.Equation
 import com.vlsantillan.domain.repository.CalculatorRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,8 +15,8 @@ import javax.inject.Singleton
 @Singleton
 class CalculatorUseCase @Inject constructor(private val repository: CalculatorRepository) {
 
-    private val _currentResult = MutableStateFlow<Float?>(null)
-    val currentResult: StateFlow<Float?> = _currentResult
+    private val _currentResult = MutableStateFlow<Equation?>(null)
+    val currentResult: StateFlow<Equation?> = _currentResult
 
     /**
      * This will calculate [x] and [y] using the [operator]
@@ -33,7 +34,10 @@ class CalculatorUseCase @Inject constructor(private val repository: CalculatorRe
             "/", "÷" -> repository.divide(x, y)
             else -> null
         }
-        _currentResult.value = result
+        result?.let {
+            _currentResult.value = Equation(x, y, operator, it)
+        }
+
         return result
     }
 }

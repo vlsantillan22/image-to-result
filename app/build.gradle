@@ -69,6 +69,8 @@ dependencies {
     implementation Libs.AndroidX.Camera.cameraView
     implementation Libs.AndroidX.Camera.cameraLifecycle
 
+    implementation Libs.Accompanist.permission
+
     implementation Libs.MLKit.textRecognition
 
     implementation Libs.Hilt.hiltAndroid

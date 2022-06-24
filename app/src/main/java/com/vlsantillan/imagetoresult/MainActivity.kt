@@ -10,10 +10,12 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.vlsantillan.imagetoresult.navigation.ImageToResultNavGraph
 import com.vlsantillan.imagetoresult.ui.theme.ImageToResultTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPermissionsApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

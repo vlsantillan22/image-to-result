@@ -8,6 +8,8 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.vlsantillan.domain.usecase.CalculatorUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 /**
@@ -16,11 +18,22 @@ import javax.inject.Inject
  * Created by Vincent Santillan on 23/06/2022.
  */
 @HiltViewModel
-class CameraViewModel @Inject constructor(private val calculatorUseCase: CalculatorUseCase) : ViewModel() {
+class CameraViewModel @Inject constructor(private val calculatorUseCase: CalculatorUseCase) :
+    ViewModel() {
+
+    private val _currentSource = MutableStateFlow<Bitmap?>(null)
+    var currentSource: StateFlow<Bitmap?> = _currentSource
+
+    val calculationResult = calculatorUseCase.currentResult
 
     private val textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
+    init {
+        Log.e("ViewModel", "is init")
+    }
+
     fun readImage(bitmap: Bitmap) {
+        _currentSource.value = bitmap
         val image = InputImage.fromBitmap(bitmap, 0)
         textRecognizer.process(image)
             .addOnSuccessListener {
@@ -34,5 +47,9 @@ class CameraViewModel @Inject constructor(private val calculatorUseCase: Calcula
             .addOnFailureListener {
                 Log.e(CameraViewModel::class.java.simpleName, "Error: ${it.message}")
             }
+    }
+
+    fun clearBitmap() {
+        _currentSource.value = null
     }
 }
