@@ -46,9 +46,13 @@ object Libs {
         }
     }
 
+    object Coroutines {
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+    }
+
     object Hilt {
         private const val version = "2.40"
-        const val hiltAndroid = "com.android.dagger:hilt-android:$version"
+        const val hiltAndroid = "com.google.dagger:hilt-android:$version"
         const val hiltCompiler = "com.google.dagger:hilt-compiler:$version"
         const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
@@ -56,6 +60,19 @@ object Libs {
     object MLKit {
         const val textRecognition =
             "com.google.android.gms:play-services-mlkit-text-recognition:18.0.0"
+    }
+
+    object ExpressionEvaluator {
+        const val evaluator = "net.objecthunter:exp4j:0.4.8"
+    }
+
+    object Java {
+        const val javaxInject = "javax.inject:javax.inject:1"
+        const val javaxJsr = "javax.annotation:jsr250-api:1.0"
+    }
+
+    object Accompanist {
+        const val permission = "com.google.accompanist:accompanist-permissions:0.24.12-rc"
     }
 
     object Test {
