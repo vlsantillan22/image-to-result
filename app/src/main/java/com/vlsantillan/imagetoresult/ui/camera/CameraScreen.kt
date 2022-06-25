@@ -56,7 +56,7 @@ fun CameraScreen(
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
 
     LaunchedEffect(Unit) {
-        cameraViewModel.clearBitmap()
+        cameraViewModel.clearResult()
     }
 
     when (cameraPermissionState.status) {

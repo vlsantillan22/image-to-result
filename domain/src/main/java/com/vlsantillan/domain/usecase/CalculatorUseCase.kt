@@ -31,7 +31,7 @@ class CalculatorUseCase @Inject constructor(private val repository: CalculatorRe
             "+" -> repository.add(x, y)
             "-" -> repository.subtract(x, y)
             "x", "*" -> repository.multiply(x, y)
-            "/", "÷" -> repository.divide(x, y)
+            "/" -> repository.divide(x, y)
             else -> null
         }
         result?.let {

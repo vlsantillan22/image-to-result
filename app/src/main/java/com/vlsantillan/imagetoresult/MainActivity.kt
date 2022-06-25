@@ -8,8 +8,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.vlsantillan.imagetoresult.navigation.ImageToResultNavGraph
 import com.vlsantillan.imagetoresult.ui.theme.ImageToResultTheme
