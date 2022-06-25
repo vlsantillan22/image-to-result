@@ -15,4 +15,8 @@ dependencies {
     implementation(Libs.Coroutines.core)
     implementation(Libs.Java.javaxInject)
     compileOnly(Libs.Java.javaxJsr)
+
+    testImplementation(Libs.Test.junit)
+    testImplementation(Libs.Test.Mockito.mockito)
+    testImplementation(Libs.Test.Mockito.mockitoKotlin)
 }

@@ -29,6 +29,38 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "theme", "functionality"
+    productFlavors {
+        red {
+            dimension "theme"
+        }
+        green {
+            dimension "theme"
+        }
+        camera {
+            dimension "functionality"
+        }
+        fileSystem {
+            dimension "functionality"
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def flavorName = variant.flavorName // e. g. Free
+            if (flavorName == "redFileSystem") {
+                outputFileName = "app-red-filesystem.apk"
+            } else if (flavorName == "greenFileSystem") {
+                outputFileName = "app-green-filesystem.apk"
+            } else if (flavorName == "redCamera") {
+                outputFileName = "app-red-built-in-camera.apk"
+            } else if (flavorName == "greenCamera") {
+                outputFileName = "app-green-built-in-camera.apk"
+            }
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

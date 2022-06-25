@@ -42,4 +42,6 @@ dependencies {
     implementation(Libs.Hilt.hiltAndroid)
     implementation(Libs.Java.javaxInject)
     compileOnly(Libs.Java.javaxJsr)
+
+    testImplementation(Libs.Test.junit)
 }

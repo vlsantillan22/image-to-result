@@ -27,6 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.vlsantillan.imagetoresult.BuildConfig
 import com.vlsantillan.imagetoresult.ui.camera.CameraViewModel
 import com.vlsantillan.imagetoresult.util.ImageUtils
 import java.io.IOException
@@ -94,34 +95,22 @@ fun HomeScreen(
                 Text(text = "Add an image with simple arithmetic equation.")
             }
         }
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .padding(16.dp)
-        ) {
-            Button(
-                onClick = {
+        Button(
+            onClick = {
+                if (BuildConfig.FLAVOR_functionality == "camera") {
+                    onCameraSourceClick()
+                } else {
                     launcher.launch("image/*")
                     bitmap = null
-                },
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text(text = "Add Input")
-            }
-
-            Button(
-                onClick = {
-                    onCameraSourceClick()
-                },
-                Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text(text = "Add Input")
-            }
+                    cameraViewModel.clearResult()
+                }
+            },
+            Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text(text = "Add Input")
         }
     }
 }
