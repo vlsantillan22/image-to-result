@@ -15,9 +15,18 @@
 ## Unit test
 To run the unit test, run `./gradlew test` or run through Android Studio
 
-## Screenshots
-
 ## Note
 Note that starting Android 11, denying the permission request more than twice
 will prevent the system to display the permission request, if this happens due to testing
 just uninstall and install the app or clear data.
+
+## Screenshots
+### Home
+![Camera](screenshots/home_screen.png)
+
+### File System
+![File-System-](screenshots/result_filesystem.png)
+
+### Camera
+![Camera-Preview](screenshots/camera_screen.png)
+![Camera-Result](screenshots/result_camera.png)
