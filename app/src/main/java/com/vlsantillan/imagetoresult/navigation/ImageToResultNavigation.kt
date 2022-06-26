@@ -1,7 +1,7 @@
-package com.vlsantillan.imagetoresult
+package com.vlsantillan.imagetoresult.navigation
 
 import androidx.navigation.NavHostController
-import com.vlsantillan.imagetoresult.ImageToResultDestinations.CAMERA_ROUTE
+import com.vlsantillan.imagetoresult.navigation.ImageToResultDestinations.CAMERA_ROUTE
 
 /**
  * All navigation related objects

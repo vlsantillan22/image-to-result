@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     TopAppBar(
                         title = { Text("Image to Result") },
                         backgroundColor = MaterialTheme.colors.primary
-                    ) // todo change based on flavor
+                    )
                 }) {
                     ImageToResultNavGraph()
                 }

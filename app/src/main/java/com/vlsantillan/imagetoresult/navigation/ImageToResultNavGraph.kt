@@ -9,8 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.vlsantillan.imagetoresult.ImageToResultDestinations
-import com.vlsantillan.imagetoresult.ImageToResultNavigator
 import com.vlsantillan.imagetoresult.ui.camera.CameraScreen
 import com.vlsantillan.imagetoresult.ui.camera.CameraViewModel
 import com.vlsantillan.imagetoresult.ui.home.HomeScreen
