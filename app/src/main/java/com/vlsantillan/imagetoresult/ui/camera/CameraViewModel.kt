@@ -20,7 +20,7 @@ import net.objecthunter.exp4j.tokenizer.OperatorToken
 import javax.inject.Inject
 
 /**
- * ViewModel for the CameraScreen
+ * ViewModel for Reading the Image
  *
  * Created by Vincent Santillan on 23/06/2022.
  */
@@ -44,6 +44,11 @@ class CameraViewModel @Inject constructor(private val calculatorUseCase: Calcula
 
     private val textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
+    /**
+     * Read and extract the equation in an image
+     *
+     * @param bitmap the image source
+     */
     fun readImage(bitmap: Bitmap) {
         _currentSource.value = bitmap
         val image = InputImage.fromBitmap(bitmap, 0)

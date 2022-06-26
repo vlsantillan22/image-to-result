@@ -2,7 +2,7 @@
 
 ## Architecture
 ### App Architecture ([Recommended by android](https://developer.android.com/topic/architecture#recommended-app-arch)) - similar to clean.
-`app` (presenation layer) - Layer that interacts with UI (MVVM)
+`app` (presentation layer) - Layer that interacts with UI (MVVM)
 
 `domain` (domain layer) - Models and interactors(usecase)
 
