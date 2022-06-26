@@ -16,7 +16,7 @@ class CalculatorRepositoryImpl @Inject constructor() : CalculatorRepository {
     }
 
     override fun subtract(minuend: Float, subtrahend: Float): Float {
-        return minuend + subtrahend
+        return minuend - subtrahend
     }
 
     override fun multiply(multiplicand: Float, multiplier: Float): Float {
