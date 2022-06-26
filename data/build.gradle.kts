@@ -44,4 +44,6 @@ dependencies {
     compileOnly(Libs.Java.javaxJsr)
 
     testImplementation(Libs.Test.junit)
+    androidTestImplementation(Libs.Test.Ext.junit)
+    androidTestImplementation(Libs.Test.espressoCore)
 }
