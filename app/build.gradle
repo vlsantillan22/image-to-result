@@ -5,6 +5,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -44,6 +45,10 @@ android {
         fileSystem {
             dimension "functionality"
         }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     applicationVariants.all { variant ->
@@ -95,7 +100,10 @@ dependencies {
     implementation Libs.AndroidX.Lifecycle.viewModelCompose
     implementation Libs.AndroidX.Activity.activityCompose
     implementation Libs.AndroidX.ConstraintLayout.constraintLayoutCompose
+    implementation Libs.AndroidX.ConstraintLayout.constraintLayout
     implementation Libs.AndroidX.Navigation.navigationCompose
+    implementation Libs.AndroidX.Navigation.navigationFragment
+    implementation Libs.AndroidX.Navigation.navigationKtx
 
     implementation Libs.AndroidX.Camera.camera2
     implementation Libs.AndroidX.Camera.cameraView

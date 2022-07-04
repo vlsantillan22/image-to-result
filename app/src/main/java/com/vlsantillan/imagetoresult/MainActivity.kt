@@ -1,35 +1,31 @@
 package com.vlsantillan.imagetoresult
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.vlsantillan.imagetoresult.navigation.ImageToResultNavGraph
-import com.vlsantillan.imagetoresult.ui.theme.ImageToResultTheme
+import androidx.appcompat.app.AppCompatActivity
+import com.vlsantillan.imagetoresult.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@ExperimentalPermissionsApi
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ImageToResultTheme {
-                Scaffold(topBar = {
-                    TopAppBar(
-                        title = { Text("Image to Result") },
-                        backgroundColor = MaterialTheme.colors.primary
-                    )
-                }) {
-                    ImageToResultNavGraph()
-                }
-            }
-        }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // setContent {
+        //     ImageToResultTheme {
+        //         Scaffold(topBar = {
+        //             TopAppBar(
+        //                 title = { Text("Image to Result") },
+        //                 backgroundColor = MaterialTheme.colors.primary
+        //             )
+        //         }) {
+        //             ImageToResultNavGraph()
+        //         }
+        //     }
+        // }
     }
 }

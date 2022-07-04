@@ -31,10 +31,14 @@ object Libs {
         object ConstraintLayout {
             const val constraintLayoutCompose =
                 "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha02"
+            const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         }
 
         object Navigation {
+            const val version = "2.5.0"
             const val navigationCompose = "androidx.navigation:navigation-compose:2.4.2"
+            const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:$version"
+            const val navigationKtx = "androidx.navigation:navigation-ui-ktx:$version"
         }
 
         object Camera {
