@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Scan me! calculator</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="camera_capture">capture</string>
+    <string name="home_add_input">Add Input</string>
+    <string name="home_image">Selected Image</string>
+    <string name="home_instruction">Add an image with simple arithmetic operation</string>
+    <string name="home_error_reading">Cannot read input. Please try again.</string>
 </resources>

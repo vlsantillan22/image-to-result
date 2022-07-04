@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 import net.objecthunter.exp4j.shuntingyard.ShuntingYard
 import net.objecthunter.exp4j.tokenizer.NumberToken
 import net.objecthunter.exp4j.tokenizer.OperatorToken
+import net.objecthunter.exp4j.tokenizer.Token
 import javax.inject.Inject
 
 /**
@@ -56,13 +57,17 @@ class CameraViewModel @Inject constructor(private val calculatorUseCase: Calcula
             .addOnSuccessListener {
                 Log.d(CameraViewModel::class.java.simpleName, "Success: ${it.text}")
                 val tokens =
-                    ShuntingYard.convertToRPN(
-                        it.text.removeInvalidChar(),
-                        emptyMap(),
-                        emptyMap(),
-                        emptySet(),
-                        true
-                    )
+                    try {
+                        ShuntingYard.convertToRPN(
+                            it.text.removeInvalidChar(),
+                            emptyMap(),
+                            emptyMap(),
+                            emptySet(),
+                            true
+                        )
+                    } catch (e: Exception) {
+                        arrayOfNulls<Token>(0)
+                    }
 
                 var input1: Double? = null
                 var input2: Double? = null

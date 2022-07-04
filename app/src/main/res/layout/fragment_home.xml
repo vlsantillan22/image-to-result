@@ -6,63 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <Button
+        android:id="@+id/button_home_add_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/app_color"
+        android:text="@string/home_add_input"
+        android:textColor="@color/app_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/image_view_home"
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:adjustViewBounds="true"
-        android:contentDescription="selected image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_home_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/image_view_home"
-        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/home_image"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_view_home_result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_view_home_input"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_home_input" />
 
     <TextView
         android:id="@+id/text_view_home_instruction"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add an image with simple arithmetic operation"
-        app:layout_constraintTop_toBottomOf="@id/image_view_home"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp"
+        android:text="@string/home_instruction"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_view_home" />
+
+    <TextView
+        android:id="@+id/text_view_home_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_view_home" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group_home_equation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="text_view_home_input, text_view_home_result" />
-
-    <Button
-        android:id="@+id/button_home_add_result"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Add Input"
-        android:background="@color/app_color"
-        android:textColor="@color/app_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

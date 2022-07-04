@@ -60,8 +60,8 @@ class HomeFragment : Fragment() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) { result ->
             var allAreGranted = true
-            for (b in result.values) {
-                allAreGranted = allAreGranted && b
+            for (granted in result.values) {
+                allAreGranted = allAreGranted && granted
             }
 
             if (allAreGranted) {
@@ -71,10 +71,10 @@ class HomeFragment : Fragment() {
 
         binding.buttonHomeAddResult.setOnClickListener {
             if (BuildConfig.FLAVOR_functionality == "camera") {
-                val appPerms = arrayOf(
+                val permissions = arrayOf(
                     Manifest.permission.CAMERA
                 )
-                activityResultLauncher.launch(appPerms)
+                activityResultLauncher.launch(permissions)
             } else {
                 launcher.launch("image/*")
                 bitmap = null
@@ -86,20 +86,6 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         lifecycleScope.launchWhenStarted {
-            lifecycleScope.launch {
-                cameraViewModel.currentSource.collect {
-                    val source = bitmap ?: it
-                    if (source != null) {
-                        binding.imageViewHome.isVisible = true
-                        cameraViewModel.readImage(source)
-                        binding.imageViewHome.setImageBitmap(source)
-                    } else {
-                        binding.groupHomeEquation.isVisible = false
-                        binding.textViewHomeInstruction.isVisible = true
-                        binding.imageViewHome.isVisible = false
-                    }
-                }
-            }
             lifecycleScope.launch {
                 cameraViewModel.calculationResult.collect {
                     if (it?.result != null) {
@@ -113,6 +99,23 @@ class HomeFragment : Fragment() {
                         binding.imageViewHome.isVisible = false
                         binding.groupHomeEquation.isVisible = false
                         binding.textViewHomeInstruction.isVisible = true
+                        binding.textViewHomeInstruction.text =
+                            getString(R.string.home_error_reading)
+                    }
+                }
+            }
+            lifecycleScope.launch {
+                cameraViewModel.currentSource.collect {
+                    val source = bitmap ?: it
+                    if (source != null) {
+                        binding.imageViewHome.isVisible = true
+                        cameraViewModel.readImage(source)
+                        binding.imageViewHome.setImageBitmap(source)
+                    } else {
+                        binding.groupHomeEquation.isVisible = false
+                        binding.imageViewHome.isVisible = false
+                        binding.textViewHomeInstruction.isVisible = true
+                        binding.textViewHomeInstruction.text = getString(R.string.home_instruction)
                     }
                 }
             }
