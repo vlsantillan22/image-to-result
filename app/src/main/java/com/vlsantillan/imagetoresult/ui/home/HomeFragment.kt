@@ -2,11 +2,12 @@ package com.vlsantillan.imagetoresult.ui.home
 
 import android.Manifest
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -14,11 +15,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.vlsantillan.imagetoresult.BuildConfig
 import com.vlsantillan.imagetoresult.R
 import com.vlsantillan.imagetoresult.databinding.FragmentHomeBinding
 import com.vlsantillan.imagetoresult.ui.camera.CameraViewModel
+import com.vlsantillan.imagetoresult.util.ImageUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -28,7 +32,19 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var activityResultLauncher: ActivityResultLauncher<Array<String>>
 
-    private val bitmap: Bitmap? = null
+    private var bitmap: Bitmap? = null
+
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                try {
+                    bitmap =
+                        ImageUtils.getBitmapFromContentUri(requireContext().contentResolver, it)
+                } catch (ex: IOException) {
+                    Log.e("HomeScreen", ex.message.toString())
+                }
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,15 +66,20 @@ class HomeFragment : Fragment() {
 
             if (allAreGranted) {
                 findNavController().navigate(R.id.camera_fragment)
-                Toast.makeText(view.context, "Open camera", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.buttonHomeAddResult.setOnClickListener {
-            val appPerms = arrayOf(
-                Manifest.permission.CAMERA
-            )
-            activityResultLauncher.launch(appPerms)
+            if (BuildConfig.FLAVOR_functionality == "camera") {
+                val appPerms = arrayOf(
+                    Manifest.permission.CAMERA
+                )
+                activityResultLauncher.launch(appPerms)
+            } else {
+                launcher.launch("image/*")
+                bitmap = null
+                cameraViewModel.clearResult()
+            }
         }
     }
 
@@ -69,21 +90,27 @@ class HomeFragment : Fragment() {
                 cameraViewModel.currentSource.collect {
                     val source = bitmap ?: it
                     if (source != null) {
+                        binding.imageViewHome.isVisible = true
+                        cameraViewModel.readImage(source)
                         binding.imageViewHome.setImageBitmap(source)
                     } else {
                         binding.groupHomeEquation.isVisible = false
                         binding.textViewHomeInstruction.isVisible = true
+                        binding.imageViewHome.isVisible = false
                     }
                 }
             }
             lifecycleScope.launch {
                 cameraViewModel.calculationResult.collect {
                     if (it?.result != null) {
+                        binding.imageViewHome.isVisible = true
                         binding.groupHomeEquation.isVisible = true
                         binding.textViewHomeInstruction.isVisible = false
-                        binding.textViewHomeInput.text = "Input: ${it.input1} ${it.operation} ${it.input2}"
+                        binding.textViewHomeInput.text =
+                            "Input: ${it.input1} ${it.operation} ${it.input2}"
                         binding.textViewHomeResult.text = "Result: ${it.result}"
                     } else {
+                        binding.imageViewHome.isVisible = false
                         binding.groupHomeEquation.isVisible = false
                         binding.textViewHomeInstruction.isVisible = true
                     }

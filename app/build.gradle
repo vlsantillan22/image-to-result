@@ -116,6 +116,9 @@ dependencies {
 
     implementation Libs.Hilt.hiltAndroid
     implementation Libs.Hilt.hiltNavigation
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     kapt Libs.Hilt.hiltCompiler
 
     testImplementation Libs.Test.junit

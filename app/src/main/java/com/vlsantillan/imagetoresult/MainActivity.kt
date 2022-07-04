@@ -15,17 +15,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // setContent {
-        //     ImageToResultTheme {
-        //         Scaffold(topBar = {
-        //             TopAppBar(
-        //                 title = { Text("Image to Result") },
-        //                 backgroundColor = MaterialTheme.colors.primary
-        //             )
-        //         }) {
-        //             ImageToResultNavGraph()
-        //         }
-        //     }
-        // }
     }
 }
